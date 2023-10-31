@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private GameObject playerShip;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject bullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,10 @@ public class PlayerInput : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMovement();
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+
+        }
     }
 
     //Controls how the player moves
