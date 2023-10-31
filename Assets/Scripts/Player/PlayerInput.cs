@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
         PlayerMovement();
     }
 
+    //Controls how the player moves
     private void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
