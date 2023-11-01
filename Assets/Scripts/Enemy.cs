@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         selectionBounds = new Vector2(Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
-
+        PickTravelLocation();
 
     }
     //Pick Location to Travel to
