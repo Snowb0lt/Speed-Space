@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 75452577}
   - component: {fileID: 75452576}
   - component: {fileID: 75452579}
+  - component: {fileID: 75452580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -250,8 +251,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShip: {fileID: 75452575}
-  moveSpeed: 0.3
-  bullet: {fileID: 0}
+  moveSpeed: 6
+  health: {fileID: 0}
+  bulletPrefab: {fileID: 6213690842545031579, guid: 12836354768b8974c805aa413d6cb738, type: 3}
+  fireRate: 0.5
+  fireCooldown: 0
+--- !u!114 &75452580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75452575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e089131275daf5b4bb147111da77bcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
