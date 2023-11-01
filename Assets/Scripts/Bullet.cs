@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out IDamageable hit))
         {
-            hit.TakeDamage();
+            hit.TakeDamage(damageAmount);
         }
     }
 }

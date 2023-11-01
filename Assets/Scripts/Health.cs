@@ -13,5 +13,6 @@ public class Health : MonoBehaviour
             Debug.Log(gameObject.name + "has Died");
             Destroy(this.gameObject);
         }
+        else return;
     }
 }

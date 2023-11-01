@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    [Header("Basic Functions")]
     [SerializeField] private GameObject playerShip;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Health health;
+    [SerializeField] private int shieldAmount;
     // Start is called before the first frame update
     void Awake()
     {
-        health = GetComponent<Health>();
+        health = this.gameObject.GetComponent<Health>();
+    }
+
+    private void Start()
+    {
+        health.hitpoints = 1 + shieldAmount;
     }
 
     // Update is called once per frame
@@ -20,12 +26,11 @@ public class Player : MonoBehaviour, IDamageable
         PlayerMovement();
         Shooting();
     }
+
     //Shooting Mechanics
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCooldown = 0;
-
-    Health IDamageable.health { get => health; }
 
     private void Shooting()
     {
@@ -59,5 +64,14 @@ public class Player : MonoBehaviour, IDamageable
         {
             playerShip.transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
         }
+    }
+
+
+    //Damages and Kills the Player
+    private Health health;
+    public void TakeDamage(float damageAmount)
+    {
+        health.hitpoints--;
+        health.Death();
     }
 }
