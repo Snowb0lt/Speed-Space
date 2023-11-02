@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -31,11 +32,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out IDamageable hit))
+        if (collision.gameObject.tag == "Enemy")
         {
-            hit.TakeDamage(damageAmount);
+            Debug.Log("Hit");
         }
+
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        if (damageable != null )
+        {
+            damageable.TakeDamage(damageAmount);
+            
+        }
+        Destroy(this.gameObject);
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int hitpoints;
+    public float hitpoints;
 
-    public void Death()
+    public void HealthCheck()
     {
         if (hitpoints <= 0)
         {

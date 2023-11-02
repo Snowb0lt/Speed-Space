@@ -72,6 +72,6 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         health.hitpoints--;
-        health.Death();
+        health.HealthCheck();
     }
 }
