@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private GameObject target;
-    [SerializeField] private Vector2 travelPoint;
-    [SerializeField] private Vector2 selectionBounds;
+    protected GameObject target;
+    private Vector2 travelPoint;
+    private Vector2 selectionBounds;
+    protected Rigidbody2D Rb;
 
-    private void Awake()
+    protected void Awake()
     {
         health = gameObject.GetComponent<Health>();
+        Rb = gameObject.GetComponent<Rigidbody2D>();
     }
-    private void Start()
+    protected void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         selectionBounds = new Vector2(Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
@@ -21,22 +23,22 @@ public class Enemy : MonoBehaviour, IDamageable
 
     }
     //Pick Location to Travel to
-    public void PickTravelLocation()
+    protected void PickTravelLocation()
     {
         float positionY = Random.Range(-selectionBounds.y, selectionBounds.y);
         float positionX = Random.Range(-selectionBounds.x, selectionBounds.x);
         travelPoint = new Vector2(positionX, positionY);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         Move();
         transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
     }
-
-    [SerializeField] private float MoveTime;
-    private float MoveCounter;
-    private void Move()
+    [Header("Movement")]
+    protected float MoveTime = 3;
+    protected float MoveCounter;
+    public virtual void Move()
     {
         MoveCounter += Time.deltaTime;
         if (MoveCounter >= MoveTime)
@@ -46,7 +48,8 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
     //Damage to the Enemy
-    private Health health;
+    [Header("Health")]
+    public Health health;
     public void TakeDamage(float damageAmount)
     {
         health.hitpoints = health.hitpoints - damageAmount;
