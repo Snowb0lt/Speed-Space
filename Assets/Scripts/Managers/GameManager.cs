@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
             DelayTimer += Time.deltaTime;
             if (DelayTimer >= SpawnMoment)
             {
+                //"Ambush" Spawn
                 for (int i = 0; i < enemiesToSpawn; i++)
                 {
                     enemyToSpawn = Random.Range(0, EnemyList.Count);
