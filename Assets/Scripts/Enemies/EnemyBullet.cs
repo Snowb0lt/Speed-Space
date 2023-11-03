@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private int bulletSpeed = 20;
+
     private float bulletLifespan = 10;
     [SerializeField] private float lifespanCounter;
     [SerializeField] private float damageAmount;

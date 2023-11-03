@@ -63,6 +63,11 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             playerShip.transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+            BackgroundScroll.instance.scrollSpeed = 15;
+        }
+        else
+        {
+            BackgroundScroll.instance.scrollSpeed = 10;
         }
     }
 

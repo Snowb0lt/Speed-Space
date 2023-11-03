@@ -5,10 +5,19 @@ using UnityEngine;
 public class BackgroundScroll : MonoBehaviour
 {
     [SerializeField]private Sprite _sprite;
-    [SerializeField] private float scrollSpeed;
+    public float scrollSpeed;
     private Vector3 startPos;
     private float repeatHeight;
 
+    public static BackgroundScroll instance;
+
+    private void Awake()
+    {
+        if (instance == null || instance != this)
+        {
+            instance = this;
+        }
+    }
     private void Start()
     {
         _sprite = GetComponent<Sprite>();
