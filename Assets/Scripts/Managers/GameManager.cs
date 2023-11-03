@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> EnemyList = new List<GameObject>();
-    private object enemyCheck;
-    [SerializeField] private int enemiesToSpawn;
-    [SerializeField]private List<GameObject> spawnAreas = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +14,35 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        EnemySpawning();
+    }
+
+
+    //Spawning Mechanics
+    [SerializeField] private List<GameObject> EnemyList = new List<GameObject>();
+    private object enemyCheck;
+    [SerializeField] private int enemiesToSpawn;
+    [SerializeField]private List<GameObject> spawnAreas = new List<GameObject>();
+    private float DelayTimer;
+    private float SpawnMoment = 2;
+    private void EnemySpawning()
+    {
+        //Check if enemies are on screen
         enemyCheck = FindAnyObjectByType(typeof(Enemy));
         if (enemyCheck == null)
         {
-            for(int i = 0; i < enemiesToSpawn; i++)
+            //break between spawns
+            
+            DelayTimer += Time.deltaTime;
+            if (DelayTimer >= SpawnMoment)
             {
-                enemyToSpawn = Random.Range(0, EnemyList.Count);
-                Instantiate(EnemyList[enemyToSpawn], spawnAreas[Random.Range(0,spawnAreas.Count)].transform.position, Quaternion.identity);
-            }
+                for (int i = 0; i < enemiesToSpawn; i++)
+                {
+                    enemyToSpawn = Random.Range(0, EnemyList.Count);
+                    Instantiate(EnemyList[enemyToSpawn], spawnAreas[Random.Range(0, spawnAreas.Count)].transform.position, Quaternion.identity);
+                }
+                DelayTimer = 0;
+            } 
         }
     }
 }
