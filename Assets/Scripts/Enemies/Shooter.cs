@@ -30,8 +30,7 @@ public class Shooter : Enemy
     public override void Update()
     {
         base.Update();
-        Shoot();
-        
+        Shoot();   
     }
 
 }

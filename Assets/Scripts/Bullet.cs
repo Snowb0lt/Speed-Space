@@ -37,14 +37,14 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit");
-        }
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damageAmount);
 
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        if (damageable != null )
-        {
-            damageable.TakeDamage(damageAmount);
-            
+            }
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        
     }
 }
