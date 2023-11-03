@@ -10,31 +10,28 @@ public class Shooter : Enemy
     public bool hasFired = false;
     // Start is called before the first frame update
 
+    [Header("Shooting")]
+    [SerializeField] private float fireRate;
+    [SerializeField] private float fireCooldown = 0;
+    private void Shoot()
+    {
+        fireCooldown += Time.deltaTime;
+        if (fireCooldown >= fireRate && Rb.velocity.magnitude <= 0)
+        {
+            for (int i = 0; i < NumberofShots; i++)
+            {
+                Debug.Log("Bullet Fired");
+                Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+            }
+            Move();
+            fireCooldown = 0;
+        }
+    }
     public override void Update()
     {
         base.Update();
+        Shoot();
+        
     }
 
-    private void Shoot()
-    {
-        if (Rb.velocity.magnitude <= 0 && !hasFired)
-        {
-            for (int i = 0; i < NumberofShots; i++)
-                {
-                    Debug.Log("Bullet Fired");
-                    Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
-                }
-            hasFired = true;
-        }
-    }
-
-    public override void Move()
-    {
-        if (hasFired)
-        {
-
-            base.Move();
-            Shoot();
-        }
-    }
 }
