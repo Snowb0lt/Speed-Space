@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     //Spawning Mechanics
     [SerializeField] private List<GameObject> EnemyList = new List<GameObject>();
     private object enemyCheck;
-    [SerializeField] private int enemiesToSpawn;
+    [SerializeField] private int baseSpawningNum;
+    private int enemiesToSpawn;
     [SerializeField]private List<GameObject> spawnAreas = new List<GameObject>();
     private float DelayTimer;
     private float SpawnMoment = 2;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             //break between spawns
             //BackgroundScroll.instance.scrollSpeed = 15;
+            enemiesToSpawn = Random.Range(baseSpawningNum, baseSpawningNum + 3);
             DelayTimer += Time.deltaTime;
             if (DelayTimer >= SpawnMoment)
             {
