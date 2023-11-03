@@ -32,10 +32,12 @@ public class GameManager : MonoBehaviour
         if (enemyCheck == null)
         {
             //break between spawns
-            
+            //BackgroundScroll.instance.scrollSpeed = 15;
             DelayTimer += Time.deltaTime;
             if (DelayTimer >= SpawnMoment)
             {
+                //BackgroundScroll.instance.scrollSpeed = 10;
+
                 //"Ambush" Spawn
                 for (int i = 0; i < enemiesToSpawn; i++)
                 {

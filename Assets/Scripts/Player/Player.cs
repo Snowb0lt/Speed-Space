@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCooldown = 0;
+    [SerializeField] private AudioSource bulletSound;
 
     private void Shooting()
     {
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour, IDamageable
             if (fireCooldown >= fireRate)
             {
                 Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
+                bulletSound.Play();
                 fireCooldown = 0;
             }
         }
@@ -63,11 +65,6 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             playerShip.transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
-            BackgroundScroll.instance.scrollSpeed = 15;
-        }
-        else
-        {
-            BackgroundScroll.instance.scrollSpeed = 10;
         }
     }
 
