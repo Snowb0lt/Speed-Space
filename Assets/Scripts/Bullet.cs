@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         BulletMechanics();
+        
     }
 
     private void BulletMechanics()

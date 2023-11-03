@@ -34,7 +34,18 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         Move();
         transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
+        FaceThePlayer();
+
     }
+
+    private void FaceThePlayer()
+    {
+        Vector3 Look = transform.InverseTransformPoint(target.transform.position);
+        float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg;
+
+        transform.Rotate(0, 0, Angle);
+    }
+
     [Header("Movement")]
     protected float MoveTime = 3;
     protected float MoveCounter;
