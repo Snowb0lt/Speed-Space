@@ -8,7 +8,8 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Basic Functions")]
     [SerializeField] private GameObject playerShip;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private int shieldAmount;
+    public float currentShieldAmount;
+    public float maxShieldAmount;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        health.hitpoints = 1 + shieldAmount;
+
     }
 
     // Update is called once per frame
@@ -73,7 +74,15 @@ public class Player : MonoBehaviour, IDamageable
     private Health health;
     public void TakeDamage(float damageAmount)
     {
-        health.hitpoints--;
-        health.HealthCheck();
+        if (currentShieldAmount > 0)
+        {
+            currentShieldAmount -= damageAmount;
+        }
+        else
+        {
+            health.hitpoints--;
+            health.HealthCheck();
+        }
+
     }
 }
