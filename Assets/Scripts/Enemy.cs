@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector2 selectionBounds;
     protected Rigidbody2D Rb;
 
+    public int enemyScore;
+    public AudioSource destruction;
+
     protected void Awake()
     {
         health = gameObject.GetComponent<Health>();
@@ -20,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamageable
         target = GameObject.FindGameObjectWithTag("Player");
         selectionBounds = new Vector2(Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
         PickTravelLocation();
+        destruction = GameObject.FindWithTag("Explosion").GetComponent<AudioSource>();
 
     }
     //Pick Location to Travel to
@@ -69,6 +73,9 @@ public class Enemy : MonoBehaviour, IDamageable
         health.hitpoints = health.hitpoints - damageAmount;
         health.HealthCheck();
     }
+    private void OnDestroy()
+    {
+        destruction.Play();
+    }
 
-    public int enemyScore;
 }

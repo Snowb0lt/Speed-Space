@@ -12,12 +12,12 @@ public class Health : MonoBehaviour
         if (hitpoints <= 0)
         {
             Debug.Log(gameObject.name + "has Died");
-            Destroy(this.gameObject);
             if (this.gameObject.GetComponent<Enemy>() != null )
             {
                 enemy = this.gameObject.GetComponent<Enemy>();
                 GameManager.Instance.AddScore(enemy.enemyScore);
             }
+            Destroy(this.gameObject);
         }
         else return;
     }
