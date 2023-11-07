@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,15 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateShields();
+    }
+
+    private void UpdateShields()
+    {
         ShieldIcon.color = color;
         color.a = player.currentShieldAmount / player.maxShieldAmount;
     }
+
+    public TMP_Text scoretext;
+
 }

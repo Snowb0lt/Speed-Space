@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float hitpoints;
+    public Enemy enemy;
 
     public void HealthCheck()
     {
@@ -12,6 +13,11 @@ public class Health : MonoBehaviour
         {
             Debug.Log(gameObject.name + "has Died");
             Destroy(this.gameObject);
+            if (this.gameObject.GetComponent<Enemy>() != null )
+            {
+                enemy = this.gameObject.GetComponent<Enemy>();
+                GameManager.Instance.AddScore(enemy.enemyScore);
+            }
         }
         else return;
     }

@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitpoints: 1
+  enemy: {fileID: 0}
 --- !u!50 &4075866127498148415
 Rigidbody2D:
   serializedVersion: 4
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  enemyScore: 100
   bulletPrefab: {fileID: 6213690842545031579, guid: fe878c58d38a21242a811fe93707b52a, type: 3}
   NumberofShots: 1
   hasFired: 1

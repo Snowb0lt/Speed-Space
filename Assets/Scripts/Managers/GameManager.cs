@@ -5,13 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private PlayerUI playerUI;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance == null || Instance != this)
         {
             Instance = this;
         }
+    }
+    private void Start()
+    {
+        playerUI = GameObject.FindAnyObjectByType<PlayerUI>().GetComponent<PlayerUI>();
     }
     private int enemyToSpawn;
     // Update is called once per frame
@@ -52,5 +57,11 @@ public class GameManager : MonoBehaviour
                 DelayTimer = 0;
             } 
         }
+    }
+    private int PlayerScore;
+    public void AddScore(int scoreamount)
+    {
+        PlayerScore = PlayerScore + scoreamount;
+        playerUI.scoretext.text = "Score: " + PlayerScore.ToString();
     }
 }

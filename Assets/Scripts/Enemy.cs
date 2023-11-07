@@ -69,4 +69,6 @@ public class Enemy : MonoBehaviour, IDamageable
         health.hitpoints = health.hitpoints - damageAmount;
         health.HealthCheck();
     }
+
+    public int enemyScore;
 }
