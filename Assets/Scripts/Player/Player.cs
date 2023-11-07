@@ -71,7 +71,7 @@ public class Player : MonoBehaviour, IDamageable
 
 
     //Damages and Kills the Player
-    private Health health;
+    public Health health;
     public void TakeDamage(float damageAmount)
     {
         if (currentShieldAmount > 0)

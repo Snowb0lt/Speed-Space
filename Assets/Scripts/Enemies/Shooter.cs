@@ -13,6 +13,7 @@ public class Shooter : Enemy
     [Header("Shooting")]
     [SerializeField] private float fireRate;
     [SerializeField] private float fireCooldown = 0;
+    [SerializeField] private AudioSource shotSound;
     private void Shoot()
     {
         fireCooldown += Time.deltaTime;
@@ -22,6 +23,7 @@ public class Shooter : Enemy
             {
                 Debug.Log("Bullet Fired");
                 Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+                shotSound.Play();
             }
             Move();
             fireCooldown = 0;

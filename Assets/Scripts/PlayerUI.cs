@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,17 @@ public class PlayerUI : MonoBehaviour
     }
 
     [SerializeField] private Image ShieldIcon;
+    [SerializeField] private GameObject ShipIcon;
     private Color color;
+
     // Update is called once per frame
     void Update()
     {
         UpdateShields();
+        if (player.health.hitpoints <= 0)
+        {
+            ShipIcon.SetActive(false);
+        }
     }
 
     private void UpdateShields()
