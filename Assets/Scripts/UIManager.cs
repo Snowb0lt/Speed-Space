@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour
+public class UIManager: MonoBehaviour
 {
     [SerializeField] private Player player;
     // Start is called before the first frame update
@@ -36,5 +36,8 @@ public class PlayerUI : MonoBehaviour
     }
 
     public TMP_Text scoretext;
+
+    [Header("Lives System")]
+    private GameObject Live_UI;
 
 }

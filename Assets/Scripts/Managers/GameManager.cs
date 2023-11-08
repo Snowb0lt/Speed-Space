@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private PlayerUI playerUI;
+    private UIManager playerUI;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        playerUI = GameObject.FindAnyObjectByType<PlayerUI>().GetComponent<PlayerUI>();
+        playerUI = GameObject.FindAnyObjectByType<UIManager>().GetComponent<UIManager>();
     }
     private int enemyToSpawn;
     // Update is called once per frame

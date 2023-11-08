@@ -18,7 +18,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-
+        maxShieldAmount = currentShieldAmount;
     }
 
     // Update is called once per frame
