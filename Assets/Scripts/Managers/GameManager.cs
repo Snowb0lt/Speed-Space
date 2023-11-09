@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager _instance;
     private UIManager playerUI;
     // Start is called before the first frame update
     void Awake()
     {
-        if (Instance == null || Instance != this)
+        if (_instance == null || _instance != this)
         {
-            Instance = this;
+            _instance = this;
         }
     }
     private void Start()
@@ -79,5 +79,24 @@ public class GameManager : MonoBehaviour
     public void BossReset()
     {
         RoundsBeforeBoss = 3 + Random.Range(0, 5);
+    }
+
+    public int NumberOfLives;
+    public void LoseALife()
+    {
+        NumberOfLives--;
+        UIManager._instance.UpdateLives();
+        Invoke("Respawn", 2);
+    }
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerSpawnPoint;
+    private Player playerScript;
+    public void Respawn()
+    {
+        player.transform.position = playerSpawnPoint.transform.position;
+        playerScript = player.GetComponent<Player>();
+        playerScript.health.hitpoints = 1;
+        playerScript.currentShieldAmount = playerScript.maxShieldAmount;
+        player.SetActive(true);
     }
 }

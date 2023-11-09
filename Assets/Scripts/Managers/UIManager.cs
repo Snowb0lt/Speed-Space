@@ -8,7 +8,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Player player;
+
+    public static UIManager _instance;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (_instance == null || _instance != this)
+        {
+            _instance = this;
+        }
+    }
     void Start()
     {
         player = FindAnyObjectByType<Player>().GetComponent<Player>();
@@ -28,11 +37,10 @@ public class UIManager : MonoBehaviour
         {
             ShipIcon.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        else
         {
-            NumberOfLives--;
+            ShipIcon.SetActive(true);
         }
-        UpdateLives();
     }
 
     private void UpdateShields()
@@ -45,15 +53,14 @@ public class UIManager : MonoBehaviour
 
     [Header("Lives System")]
     [SerializeField] private GameObject LifeUIObject;
-    [SerializeField] private int NumberOfLives;
     [SerializeField] private GameObject LivesHolder;
     private Transform SpawnPosition;
     [SerializeField] private List<GameObject> Lives = new List<GameObject>();
-    private void UpdateLives()
+    public void UpdateLives()
     { 
         for (int i = 0; i < Lives.Count; i++)
         {   
-            if (i < NumberOfLives)
+            if (i < GameManager._instance.NumberOfLives)
             {
                 Lives[i].SetActive(true);
             }

@@ -15,9 +15,14 @@ public class Health : MonoBehaviour
             if (this.gameObject.GetComponent<Enemy>() != null )
             {
                 enemy = this.gameObject.GetComponent<Enemy>();
-                GameManager.Instance.AddScore(enemy.enemyScore);
+                GameManager._instance.AddScore(enemy.enemyScore);
+                Destroy(this.gameObject);
             }
-            Destroy(this.gameObject);
+            if (this.gameObject.GetComponent<Player>() != null )
+            {
+                GameManager._instance.LoseALife();
+                this.gameObject.SetActive(false);
+            }
         }
         else return;
     }
