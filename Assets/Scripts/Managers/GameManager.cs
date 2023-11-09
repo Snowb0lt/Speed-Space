@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerUI = GameObject.FindAnyObjectByType<UIManager>().GetComponent<UIManager>();
+        BossReset();
     }
     private int enemyToSpawn;
     // Update is called once per frame
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
             DelayTimer += Time.deltaTime;
             if (DelayTimer >= SpawnMoment)
             {
+                NextRound();    
                 //BackgroundScroll.instance.scrollSpeed = 10;
 
                 //"Ambush" Spawn
@@ -63,5 +65,19 @@ public class GameManager : MonoBehaviour
     {
         PlayerScore = PlayerScore + scoreamount;
         playerUI.scoretext.text = "Score: " + PlayerScore.ToString();
+    }
+    //Rounds and Bosses
+    [SerializeField] private int RoundsBeforeBoss;
+    public void NextRound()
+    {
+        RoundsBeforeBoss--;
+        if (RoundsBeforeBoss == 0)
+        {
+            Debug.Log("BossHasSpawned");
+        }
+    }
+    public void BossReset()
+    {
+        RoundsBeforeBoss = 3 + Random.Range(0, 5);
     }
 }

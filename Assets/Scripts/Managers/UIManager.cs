@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager: MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private Player player;
     // Start is called before the first frame update
@@ -13,6 +13,7 @@ public class UIManager: MonoBehaviour
     {
         player = FindAnyObjectByType<Player>().GetComponent<Player>();
         color = ShieldIcon.color;
+        SpawnPosition = LivesHolder.transform;
     }
 
     [SerializeField] private Image ShieldIcon;
@@ -27,6 +28,11 @@ public class UIManager: MonoBehaviour
         {
             ShipIcon.SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            NumberOfLives--;
+        }
+        UpdateLives();
     }
 
     private void UpdateShields()
@@ -38,6 +44,23 @@ public class UIManager: MonoBehaviour
     public TMP_Text scoretext;
 
     [Header("Lives System")]
-    private GameObject Live_UI;
-
+    [SerializeField] private GameObject LifeUIObject;
+    [SerializeField] private int NumberOfLives;
+    [SerializeField] private GameObject LivesHolder;
+    private Transform SpawnPosition;
+    [SerializeField] private List<GameObject> Lives = new List<GameObject>();
+    private void UpdateLives()
+    { 
+        for (int i = 0; i < Lives.Count; i++)
+        {   
+            if (i < NumberOfLives)
+            {
+                Lives[i].SetActive(true);
+            }
+            else
+            {
+                Lives[i].SetActive(false);
+            }
+        }
+    }
 }
