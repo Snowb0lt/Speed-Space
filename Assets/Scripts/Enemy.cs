@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    protected GameObject target;
+    public GameObject target;
     private Vector2 travelPoint;
     private Vector2 selectionBounds;
     protected Rigidbody2D Rb;

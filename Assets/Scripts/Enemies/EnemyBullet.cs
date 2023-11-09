@@ -9,8 +9,10 @@ public class EnemyBullet : MonoBehaviour
     private float bulletLifespan = 10;
     [SerializeField] private float lifespanCounter;
     [SerializeField] private float damageAmount;
+    [SerializeField] private float bulletSpeed;
     private GameObject target;
     private Rigidbody2D rb;
+    private Vector3 position;
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,12 +21,15 @@ public class EnemyBullet : MonoBehaviour
     }
     private void Start()
     {
-        rb.AddForce(target.transform.position - transform.position, ForceMode2D.Impulse);
+        //rb.AddForce(target.transform.position - transform.position * bulletSpeed, ForceMode2D.Impulse);
+        position = (target.transform.position - rb.transform.position).normalized;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        
+        rb.MovePosition(rb.transform.position + position * bulletSpeed * Time.fixedDeltaTime);
         BulletMechanics();
     }
 

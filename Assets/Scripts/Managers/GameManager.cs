@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerUI = GameObject.FindAnyObjectByType<UIManager>().GetComponent<UIManager>();
+        player = GameObject.FindWithTag("Player");
         BossReset();
     }
     private int enemyToSpawn;
