@@ -85,4 +85,15 @@ public class Player : MonoBehaviour, IDamageable
         }
 
     }
+
+    public void UseBomb()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.RightShift)))
+        {
+            if (GameManager._instance.NumberOfBombs >0)
+            {
+
+            }
+        }
+    }
 }

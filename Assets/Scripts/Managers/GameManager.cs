@@ -100,4 +100,7 @@ public class GameManager : MonoBehaviour
         playerScript.currentShieldAmount = playerScript.maxShieldAmount;
         player.SetActive(true);
     }
+
+    public int NumberOfBombs;
+    public int MaxBombCount;
 }
