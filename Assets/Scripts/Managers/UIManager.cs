@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
         player = FindAnyObjectByType<Player>().GetComponent<Player>();
         color = ShieldIcon.color;
         SpawnPosition = LivesHolder.transform;
+        UpdateBombCount(GameManager._instance.NumberOfBombs);
     }
 
     [SerializeField] private Image ShieldIcon;
@@ -69,5 +70,12 @@ public class UIManager : MonoBehaviour
                 Lives[i].SetActive(false);
             }
         }
+    }
+
+    [Header("Bombs")]
+    [SerializeField] TMP_Text bombCountText;
+    public void UpdateBombCount(int bombCount)
+    {
+        bombCountText.text = "= " + bombCount;
     }
 }

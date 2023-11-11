@@ -22,10 +22,11 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         PlayerMovement();
         Shooting();
+        UseBomb();
     }
 
     //Shooting Mechanics
@@ -90,10 +91,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.RightShift)))
         {
-            if (GameManager._instance.NumberOfBombs >0)
-            {
-
-            }
+            GameManager._instance.UseBomb();
         }
     }
 }

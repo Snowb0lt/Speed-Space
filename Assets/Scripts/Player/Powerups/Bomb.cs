@@ -10,6 +10,5 @@ public class Bomb : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject hostiles in enemies)
             Destroy(hostiles);
-        GameManager._instance.NumberOfBombs--;
     }
 }

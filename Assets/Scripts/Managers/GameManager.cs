@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         UIManager._instance.UpdateLives();
         Invoke("Respawn", 2);
     }
+    [Header("Respawn Mechanics")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerSpawnPoint;
     private Player playerScript;
@@ -101,6 +102,19 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
     }
 
+    //Bomb Storage Mechanics
+    [Header("Bomb Mechanics")]
     public int NumberOfBombs;
     public int MaxBombCount;
+    [SerializeField] private Bomb bomb;
+    public void UseBomb()
+    {
+        if (NumberOfBombs > 0)
+        {
+            bomb.ActivateBomb();
+            NumberOfBombs--;
+            UIManager._instance.UpdateBombCount(NumberOfBombs);
+        }
+    }
+
 }

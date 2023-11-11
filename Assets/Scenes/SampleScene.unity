@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 75452583}
   - component: {fileID: 75452582}
   - component: {fileID: 75452584}
+  - component: {fileID: 75452585}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -428,6 +429,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &75452585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75452575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01e48dca31e61c45bb1db4f3fda1056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &272600608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,11 +808,11 @@ RectTransform:
   m_LocalScale: {x: 0.75251, y: 0.75251, z: 0.75251}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1369537405}
+  m_Father: {fileID: 1793149298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 417, y: -203}
+  m_AnchoredPosition: {x: -27, y: 4.0000153}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &406869009
@@ -1605,6 +1618,7 @@ MonoBehaviour:
   - {fileID: 1993884631}
   - {fileID: 452624422}
   - {fileID: 550471642}
+  bombCountText: {fileID: 2075688649}
 --- !u!1 &1234365926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,7 +1814,6 @@ RectTransform:
   m_Children:
   - {fileID: 1888825728}
   - {fileID: 319722492}
-  - {fileID: 406869008}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2140,6 +2153,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2075688648}
+  - {fileID: 406869008}
   m_Father: {fileID: 1888825728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2188,8 +2202,9 @@ MonoBehaviour:
   NumberOfLives: 0
   player: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
-  NumberOfBombs: 0
-  MaxBombCount: 0
+  NumberOfBombs: 3
+  MaxBombCount: 9
+  bomb: {fileID: 75452585}
 --- !u!4 &1832639813
 Transform:
   m_ObjectHideFlags: 0
