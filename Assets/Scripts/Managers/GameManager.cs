@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
             bomb.ActivateBomb();
             NumberOfBombs--;
             UIManager._instance.UpdateBombCount(NumberOfBombs);
+            AddScore(200);
         }
     }
 

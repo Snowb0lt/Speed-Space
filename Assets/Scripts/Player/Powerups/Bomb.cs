@@ -9,6 +9,6 @@ public class Bomb : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject hostiles in enemies)
-            Destroy(hostiles);
+            hostiles.GetComponent<Enemy>().TakeDamage(5);
     }
 }
