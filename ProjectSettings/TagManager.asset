@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Explosion
+  - ShielderSpawn
   layers:
   - Default
   - TransparentFX

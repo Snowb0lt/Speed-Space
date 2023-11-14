@@ -69,12 +69,13 @@ public class GameManager : MonoBehaviour
     }
     //Rounds and Bosses
     [SerializeField] private int RoundsBeforeBoss;
+    [SerializeField] private Boss bossScript;
     public void NextRound()
     {
         RoundsBeforeBoss--;
         if (RoundsBeforeBoss == 0)
         {
-            Debug.Log("BossHasSpawned");
+            bossScript.Spawn();
         }
     }
     public void BossReset()

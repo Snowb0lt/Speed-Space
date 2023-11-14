@@ -6,19 +6,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public GameObject target;
-    private Vector2 travelPoint;
+    public Vector2 travelPoint;
     private Vector2 selectionBounds;
     protected Rigidbody2D Rb;
 
     public int enemyScore;
     public AudioSource destruction;
 
-    protected void Awake()
+    public virtual void Awake()
     {
         health = gameObject.GetComponent<Health>();
         Rb = gameObject.GetComponent<Rigidbody2D>();
     }
-    protected void Start()
+    public virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         selectionBounds = new Vector2(Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     }
     //Pick Location to Travel to
-    protected void PickTravelLocation()
+    public virtual void PickTravelLocation()
     {
         float positionY = Random.Range(-selectionBounds.y, selectionBounds.y);
         float positionX = Random.Range(-selectionBounds.x, selectionBounds.x);
@@ -40,11 +40,11 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Move();
             transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
-            FaceThePlayer();
+            EnemyFacing();
         }
     }
 
-    private void FaceThePlayer()
+    public virtual void EnemyFacing()
     {
         if (target != null) { }
         Vector3 Look = transform.InverseTransformPoint(target.transform.position);
