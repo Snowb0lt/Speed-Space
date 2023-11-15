@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     [Header("Movement")]
-    protected float MoveTime = 3;
+    public float MoveTime = 3;
     protected float MoveCounter;
     public virtual void Move()
     {
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //Damage to the Enemy
     [Header("Health")]
     public Health health;
-    public void TakeDamage(float damageAmount)
+    public virtual void TakeDamage(float damageAmount)
     {
         health.hitpoints = health.hitpoints - damageAmount;
         health.HealthCheck();
