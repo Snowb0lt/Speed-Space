@@ -14,6 +14,12 @@ public class Shielder : Enemy
         EnemyFacing();
     }
 
+    public override void Start()
+    {
+        base.Start();
+        transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
+    }
+
     public override void Update()
     {
         Move();
@@ -41,7 +47,7 @@ public class Shielder : Enemy
     }
     public override void EnemyFacing()
     {
-        transform.rotation = Quaternion.identity;
+        transform.rotation = Quaternion.Euler(0f, 0f, 180f);
     }
 
     [Header("Shields")]
@@ -52,10 +58,10 @@ public class Shielder : Enemy
     private void ActivateShield()
     {
         ShieldObject.SetActive (true);
+        ShieldHP = 3;
     }
     public override void TakeDamage(float damageAmount)
     {
-        base.TakeDamage(damageAmount);
         if (ShieldObject.activeSelf == true)
         {
             ShieldHP--;
@@ -64,5 +70,15 @@ public class Shielder : Enemy
                 ShieldObject.SetActive(false);
             }
         }
+        else
+        {
+            base.TakeDamage(damageAmount);
+        }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
     }
 }
