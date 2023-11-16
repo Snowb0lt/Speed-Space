@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -29,8 +30,8 @@ public class Enemy : MonoBehaviour, IDamageable
     //Pick Location to Travel to
     public virtual void PickTravelLocation()
     {
-        float positionY = Random.Range(-selectionBounds.y, selectionBounds.y);
-        float positionX = Random.Range(-selectionBounds.x, selectionBounds.x);
+        float positionY = UnityEngine.Random.Range(-selectionBounds.y, selectionBounds.y);
+        float positionX = UnityEngine.Random.Range(-selectionBounds.x, selectionBounds.x);
         travelPoint = new Vector2(positionX, positionY);
     }
 
@@ -89,4 +90,20 @@ public class Enemy : MonoBehaviour, IDamageable
         destruction.Play();
     }
 
+    public float attackRate;
+    public float attackCooldown = 0;
+    public virtual void Attack(Action Attack)
+    {
+        if (target != null)
+        {
+            attackCooldown += Time.deltaTime;
+            if (attackCooldown >= attackRate)
+            {
+                Attack?.Invoke();
+                Move();
+                attackCooldown = 0;
+            }
+        }
+
+    }
 }
