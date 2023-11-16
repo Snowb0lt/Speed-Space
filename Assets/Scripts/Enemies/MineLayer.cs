@@ -4,7 +4,7 @@ using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Bomber : Enemy
+public class MineLayer: Enemy
 {
     public override void Update()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9179474825335276438}
   - component: {fileID: 301208494062549132}
   m_Layer: 0
-  m_Name: Bomber
+  m_Name: MineLayer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

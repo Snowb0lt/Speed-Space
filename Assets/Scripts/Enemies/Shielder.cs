@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Shielder : Enemy
 {
-    private Vector2 selectionBounds;
+    private Vector2 MoveArea;
     [SerializeField] private GameObject Spawnarea;
     public override void Awake()
     {
