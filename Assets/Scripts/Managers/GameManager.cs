@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         NumberOfLives--;
         UIManager._instance.UpdateLives();
-        Invoke("Respawn", 2);
+        Invoke("Respawn", 5);
     }
     [Header("Respawn Mechanics")]
     [SerializeField] private GameObject player;

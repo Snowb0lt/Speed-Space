@@ -14,23 +14,21 @@ public class Shooter : Enemy
     [Header("Shooting")]
     //[SerializeField] private float fireRate;
     [SerializeField] private AudioSource shotSound;
-    public override void Attack(Action Attack)
-    {
-        if (target != null)
-        {
-            base.Attack(Shoot);
-        }
+    //public override void Attack(Action Attack)
+    //{
+    //    if (target != null)
+    //    {
+    //        base.Attack(Shoot);
+    //    }
 
-    }
+    //}
     private void Shoot()
     {
-                for (int i = 0; i < NumberofShots; i++)
-                {
-                    Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
-                    shotSound.Play();
-                }
-                Move();
-                attackCooldown = 0;
+        for (int i = 0; i < NumberofShots; i++)
+        {
+            Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+            shotSound.Play();
+        }
     }
     public override void Update()
     {

@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public float attackCooldown = 0;
     public virtual void Attack(Action Attack)
     {
-        if (target != null)
+        if (target.gameObject.activeSelf == true)
         {
             attackCooldown += Time.deltaTime;
             if (attackCooldown >= attackRate)
@@ -104,6 +104,9 @@ public class Enemy : MonoBehaviour, IDamageable
                 attackCooldown = 0;
             }
         }
-
+        else
+        {
+            attackCooldown = 0;
+        }
     }
 }
