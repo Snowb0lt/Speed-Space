@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         playerUI = GameObject.FindAnyObjectByType<UIManager>().GetComponent<UIManager>();
         player = GameObject.FindWithTag("Player");
         BossReset();
+        playerSpawnPoint = GameObject.FindWithTag("PlayerSpawn");
     }
     private int enemyToSpawn;
     // Update is called once per frame
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
         RoundsBeforeBoss = 3 + Random.Range(0, 5);
     }
 
-    public int NumberOfLives;
+    public int NumberOfLives = 3;
     public void LoseALife()
     {
         NumberOfLives--;

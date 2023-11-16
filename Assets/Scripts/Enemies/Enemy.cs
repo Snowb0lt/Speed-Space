@@ -42,6 +42,17 @@ public class Enemy : MonoBehaviour, IDamageable
             transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
             EnemyFacing();
         }
+        else
+        {
+            try
+            {
+                target = GameObject.FindGameObjectWithTag("Player");
+            }
+            catch
+            {
+                return;
+            }
+        }
     }
 
     public virtual void EnemyFacing()

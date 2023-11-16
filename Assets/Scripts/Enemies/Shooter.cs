@@ -16,17 +16,19 @@ public class Shooter : Enemy
     [SerializeField] private AudioSource shotSound;
     private void Shoot()
     {
-        fireCooldown += Time.deltaTime;
-        if (fireCooldown >= fireRate && Rb.velocity.magnitude <= 0)
+        if (target != null)
         {
-            for (int i = 0; i < NumberofShots; i++)
+            fireCooldown += Time.deltaTime;
+            if (fireCooldown >= fireRate && Rb.velocity.magnitude <= 0)
             {
-                Debug.Log("Bullet Fired");
-                Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
-                shotSound.Play();
+                for (int i = 0; i < NumberofShots; i++)
+                {
+                    Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+                    shotSound.Play();
+                }
+                Move();
+                fireCooldown = 0;
             }
-            Move();
-            fireCooldown = 0;
         }
     }
     public override void Update()
