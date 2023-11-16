@@ -7,7 +7,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public GameObject target;
-    public Vector2 travelPoint;
+    public Vector3 travelPoint;
     private Vector2 selectionBounds;
     protected Rigidbody2D Rb;
 
@@ -58,7 +58,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public virtual void EnemyFacing()
     {
-        if (target != null) { }
         Vector3 Look = transform.InverseTransformPoint(target.transform.position);
         float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg;
 
@@ -91,7 +90,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     public float attackRate;
-    public float attackCooldown = 0;
+    private float attackCooldown = 0;
     public virtual void Attack(Action Attack)
     {
         if (target.gameObject.activeSelf == true)

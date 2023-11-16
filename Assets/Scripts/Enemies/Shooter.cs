@@ -9,19 +9,9 @@ public class Shooter : Enemy
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int NumberofShots;
     public bool hasFired = false;
-    // Start is called before the first frame update
 
     [Header("Shooting")]
-    //[SerializeField] private float fireRate;
     [SerializeField] private AudioSource shotSound;
-    //public override void Attack(Action Attack)
-    //{
-    //    if (target != null)
-    //    {
-    //        base.Attack(Shoot);
-    //    }
-
-    //}
     private void Shoot()
     {
         for (int i = 0; i < NumberofShots; i++)
