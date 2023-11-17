@@ -104,4 +104,4 @@ MonoBehaviour:
   MoveTime: 3
   health: {fileID: 0}
   attackRate: 4
-  MinePrefab: {fileID: 0}
+  MinePrefab: {fileID: 8477722162226590174, guid: 40ae1b36436dcdc4397884c35db8ee79, type: 3}
