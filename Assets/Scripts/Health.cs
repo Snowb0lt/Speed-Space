@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float hitpoints;
-    public Enemy enemy;
+    private Enemy enemy;
 
     public void HealthCheck()
     {

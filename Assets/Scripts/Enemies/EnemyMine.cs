@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyMine : MonoBehaviour, IDamageable
+public class EnemyMine : MonoBehaviour
 {
     [SerializeField] private int DetonationTime;
     private float CountUp;
@@ -22,10 +22,6 @@ public class EnemyMine : MonoBehaviour, IDamageable
             Detonate();
         }
     }
-    public void TakeDamage(float damageAmount)
-    {
-        throw new System.NotImplementedException();
-    }
     [SerializeField] private GameObject MineBody;
     [SerializeField] private GameObject Boom;
     private void Detonate()
@@ -35,5 +31,22 @@ public class EnemyMine : MonoBehaviour, IDamageable
         Boom.transform.localScale += new Vector3(2, 2, 2)* Time.deltaTime *2;
 
         Destroy(this.gameObject, 1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Bullet>() && MineBody.activeSelf)
+        {
+            CountUp = DetonationTime;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.GetComponent<Player>() && MineBody.activeSelf)
+        {
+            CountUp = DetonationTime;
+        }
+        if (collision.gameObject.GetComponent<IDamageable>() != null && Boom.activeSelf) 
+        {
+            collision.gameObject.GetComponent<IDamageable>().TakeDamage(3);
+        }
     }
 }
