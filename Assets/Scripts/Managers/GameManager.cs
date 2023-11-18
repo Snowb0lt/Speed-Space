@@ -22,10 +22,15 @@ public class GameManager : MonoBehaviour
         playerSpawnPoint = GameObject.FindWithTag("PlayerSpawn");
     }
     private int enemyToSpawn;
-    // Update is called once per frame
     void LateUpdate()
     {
         EnemySpawning();
+
+        //VERY ROUGH ESCAPE KEY EXIT. REPLACE LATER
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
 
@@ -119,5 +124,6 @@ public class GameManager : MonoBehaviour
             AddScore(200);
         }
     }
+
 
 }
