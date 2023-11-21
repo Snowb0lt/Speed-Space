@@ -11,7 +11,6 @@ public class MineLayer: Enemy
         Move();
         transform.position = Vector2.MoveTowards(transform.position, travelPoint, 3 * Time.deltaTime);
         Attack(LayMine);
-        
     }
 
     public override void PickTravelLocation()

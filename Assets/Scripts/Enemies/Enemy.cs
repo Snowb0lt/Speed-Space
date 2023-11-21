@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable
             Move();
             transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
             EnemyFacing();
-            //EnemyBoudaries();
+            EnemyBoudaries();
         }
         else
         {
@@ -63,28 +63,28 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
     //Keeps the Enemy inside the bounds of the screen
-    //private void EnemyBoudaries()
-    //{
-    //    if(!EnemyLeaving)
-    //    {
-    //        if (transform.position.x < -screenBoundaries.x)
-    //        {
-    //            transform.position = new Vector2(-screenBoundaries.x, transform.position.y);
-    //        }
-    //        else if (transform.position.x > screenBoundaries.x)
-    //        {
-    //            transform.position = new Vector2(screenBoundaries.x, transform.position.y);
-    //        }
-    //        if (transform.position.y < -screenBoundaries.y)
-    //        {
-    //            transform.position = new Vector2(transform.position.x, -screenBoundaries.y);
-    //        }
-    //        else if (transform.position.y > screenBoundaries.y)
-    //        {
-    //            transform.position = new Vector2(transform.position.x, screenBoundaries.y);
-    //        }
-    //    }
-    //}
+    private void EnemyBoudaries()
+    {
+        if (!EnemyLeaving)
+        {
+            if (transform.position.x < -screenBoundaries.x)
+            {
+                transform.position = new Vector2(-screenBoundaries.x, transform.position.y);
+            }
+            else if (transform.position.x > screenBoundaries.x)
+            {
+                transform.position = new Vector2(screenBoundaries.x, transform.position.y);
+            }
+            if (transform.position.y < -screenBoundaries.y)
+            {
+                transform.position = new Vector2(transform.position.x, -screenBoundaries.y);
+            }
+            else if (transform.position.y > screenBoundaries.y)
+            {
+                transform.position = new Vector2(transform.position.x, screenBoundaries.y);
+            }
+        }
+    }
 
     public virtual void EnemyFacing()
     {
