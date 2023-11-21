@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable
             Move();
             transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
             EnemyFacing();
-            EnemyBoudaries();
+            //EnemyBoudaries();
         }
         else
         {
@@ -63,25 +63,28 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
     //Keeps the Enemy inside the bounds of the screen
-    private void EnemyBoudaries()
-    {
-        if (transform.position.x < -screenBoundaries.x)
-        {
-            transform.position = new Vector2(-screenBoundaries.x, transform.position.y);
-        }
-        else if (transform.position.x > screenBoundaries.x)
-        {
-            transform.position = new Vector2(screenBoundaries.x, transform.position.y);
-        }
-        if (transform.position.y < -screenBoundaries.y)
-        {
-            transform.position = new Vector2(transform.position.x, -screenBoundaries.y);
-        }
-        else if (transform.position.y > screenBoundaries.y)
-        {
-            transform.position = new Vector2(transform.position.x, screenBoundaries.y);
-        }
-    }
+    //private void EnemyBoudaries()
+    //{
+    //    if(!EnemyLeaving)
+    //    {
+    //        if (transform.position.x < -screenBoundaries.x)
+    //        {
+    //            transform.position = new Vector2(-screenBoundaries.x, transform.position.y);
+    //        }
+    //        else if (transform.position.x > screenBoundaries.x)
+    //        {
+    //            transform.position = new Vector2(screenBoundaries.x, transform.position.y);
+    //        }
+    //        if (transform.position.y < -screenBoundaries.y)
+    //        {
+    //            transform.position = new Vector2(transform.position.x, -screenBoundaries.y);
+    //        }
+    //        else if (transform.position.y > screenBoundaries.y)
+    //        {
+    //            transform.position = new Vector2(transform.position.x, screenBoundaries.y);
+    //        }
+    //    }
+    //}
 
     public virtual void EnemyFacing()
     {
@@ -96,15 +99,37 @@ public class Enemy : MonoBehaviour, IDamageable
     [Header("Movement")]
     public float MoveTime = 3;
     protected float MoveCounter;
+    private float LingerTime = 15;
+    private float LingerCount = 0;
+    private bool EnemyLeaving = false;
     public virtual void Move()
     {
+        //Timers for movement/Leaving
         MoveCounter += Time.deltaTime;
+        LingerCount += Time.deltaTime;
         if (MoveCounter >= MoveTime)
         {
-            PickTravelLocation();
-            MoveCounter = 0;
+            if (LingerCount < LingerTime)
+            {
+                PickTravelLocation();
+                MoveCounter = 0;
+            }
+            if (LingerCount >= LingerTime && !EnemyLeaving)
+            {
+                Debug.Log("Enemy Is Leaving");
+                EnemyLeaving=true;
+                travelPoint = GameManager._instance.spawnAreas[UnityEngine.Random.Range(0, GameManager._instance.spawnAreas.Count)].transform.position;
+                transform.position = Vector2.Lerp(transform.position, travelPoint, 5 * Time.deltaTime);
+            }
+        }
+        if (EnemyLeaving)
+        if (Vector3.Distance(transform.position, travelPoint) <= 0.5f)
+        {
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
+
     //Damage to the Enemy
     [Header("Health")]
     public Health health;
@@ -112,17 +137,21 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         health.hitpoints = health.hitpoints - damageAmount;
         health.HealthCheck();
+        if (health.hitpoints <= 0) 
+        {
+            destruction.Play();
+        }
     }
-    private void OnDestroy()
-    {
-        destruction.Play();
-    }
+    //private void OnDestroy()
+    //{
+    //    destruction.Play();
+    //}
 
     public float attackRate;
     private float attackCooldown = 0;
     public virtual void Attack(Action Attack)
     {
-        if (target.gameObject.activeSelf == true)
+        if (target.gameObject.activeSelf == true && !EnemyLeaving)
         {
             attackCooldown += Time.deltaTime;
             if (attackCooldown >= attackRate)

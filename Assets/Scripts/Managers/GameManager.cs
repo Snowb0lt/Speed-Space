@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private object enemyCheck;
     [SerializeField] private int baseSpawningNum;
     private int enemiesToSpawn;
-    [SerializeField]private List<GameObject> spawnAreas = new List<GameObject>();
+    public List<GameObject> spawnAreas = new List<GameObject>();
     private float DelayTimer;
     private float SpawnMoment = 2;
     private void EnemySpawning()
