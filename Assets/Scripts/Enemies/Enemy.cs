@@ -142,10 +142,6 @@ public class Enemy : MonoBehaviour, IDamageable
             destruction.Play();
         }
     }
-    //private void OnDestroy()
-    //{
-    //    destruction.Play();
-    //}
 
     public float attackRate;
     private float attackCooldown = 0;

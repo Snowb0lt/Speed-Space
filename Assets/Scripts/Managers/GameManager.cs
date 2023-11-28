@@ -75,14 +75,24 @@ public class GameManager : MonoBehaviour
     }
     //Rounds and Bosses
     [SerializeField] private int RoundsBeforeBoss;
-    [SerializeField] private Boss bossScript;
+    //[SerializeField] private Boss bossScript;
     public void NextRound()
     {
         RoundsBeforeBoss--;
         if (RoundsBeforeBoss == 0)
         {
-            bossScript.Spawn();
+            SpawnBoss();
         }
+    }
+    [Header("Boss Spawning/Intro")]
+    private AudioSource BossSpawnSound;
+    private List<GameObject> BossList = new List<GameObject>();
+    private int randomNumber;
+    private GameObject BossSpawnLocation;
+    public void SpawnBoss()
+    {
+        randomNumber = Random.Range(0, BossList.Count);
+        Instantiate(BossList[randomNumber], BossSpawnLocation.transform);
     }
     public void BossReset()
     {
@@ -124,6 +134,5 @@ public class GameManager : MonoBehaviour
             AddScore(200);
         }
     }
-
 
 }
