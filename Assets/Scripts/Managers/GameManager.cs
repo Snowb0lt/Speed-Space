@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     //Spawning Mechanics
     [SerializeField] private List<GameObject> EnemyList = new List<GameObject>();
     private object enemyCheck;
+    private object BossCheck;
     [SerializeField] private int baseSpawningNum;
     private int enemiesToSpawn;
     public List<GameObject> spawnAreas = new List<GameObject>();
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
     {
         //Check if enemies are on screen
         enemyCheck = FindAnyObjectByType(typeof(Enemy));
-        if (enemyCheck == null)
+        BossCheck = FindAnyObjectByType(typeof(Boss));
+        if (enemyCheck == null && BossCheck == null)
         {
             //break between spawns
             //BackgroundScroll.instance.scrollSpeed = 15;
