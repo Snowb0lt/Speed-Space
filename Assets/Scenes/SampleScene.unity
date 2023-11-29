@@ -7710,12 +7710,13 @@ MonoBehaviour:
   BossMoveSpeed: 2
   travelPoint: {x: 0, y: 0}
   health: {fileID: 0}
-  attackRate: 0
+  attackRate: 7
+  attackCooldown: 0
   Turrets:
   - {fileID: 1861035457}
   - {fileID: 492000952}
+  bulletPrefab: {fileID: 6213690842545031579, guid: fe878c58d38a21242a811fe93707b52a, type: 3}
   LaserPorts: []
-  bulletPrefab: {fileID: 0}
 --- !u!114 &1515933481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8583,7 +8584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861035457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15635751, y: 0.15635751, z: 0.68960303, w: 0.68960303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.59, y: 0.089, z: -0.02}
   m_LocalScale: {x: 0.17155492, y: 0.17155492, z: 0.17155492}
   m_ConstrainProportionsScale: 0
@@ -8591,7 +8592,7 @@ Transform:
   - {fileID: 710424017}
   - {fileID: 1770801203}
   m_Father: {fileID: 1515933479}
-  m_LocalEulerAnglesHint: {x: 0, y: 25.55, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1861035460
 Rigidbody2D:
   serializedVersion: 4

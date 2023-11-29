@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,27 +9,41 @@ public class GunShipBoss : Boss
     private void BossMovement()
     {
         var Spawnbounds = Spawnarea.GetComponent<SpriteRenderer>().bounds;
-        travelPoint = new Vector2(Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
+        travelPoint = new Vector2(UnityEngine.Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
+    }
+
+    private List<Action> attacks;
+
+    public override void Start()
+    {
+        base.Start();
+        attacks = new List<Action>();
+
+        attacks.Add(AttackShoot);
+        attacks.Add(AttackLaser);
     }
 
     public override void Update()
     {
         base.Update();
-        
-
-        foreach (GameObject turret in Turrets)
-        {
-            Vector3 targetPos = target.transform.position - turret.transform.position;
-            float Facing = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg + 90;
-            turret.transform.rotation = Quaternion.Euler(0,0,Facing);
-        }
+        TurretMovement();
+        Attack(attacks[UnityEngine.Random.Range(0, attacks.Count)]);
     }
 
     [Header("Weapons")]
     [SerializeField]private List<GameObject> Turrets = new List<GameObject>();
-    [SerializeField]private List<GameObject> LaserPorts = new List<GameObject>();
+
     [SerializeField] private GameObject bulletPrefab;
-    //Fire the gunship's cannons
+    //Concerning the gunship's cannons
+    private void TurretMovement()
+    {
+        foreach (GameObject turret in Turrets)
+        {
+            Vector3 targetPos = target.transform.position - turret.transform.position;
+            float Facing = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg + 90;
+            turret.transform.rotation = Quaternion.Euler(0, 0, Facing);
+        }
+    }
     private void AttackShoot()
     {
         foreach (GameObject turret in Turrets)
@@ -45,9 +60,12 @@ public class GunShipBoss : Boss
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    [SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
     //fire the twin lasers
     private void AttackLaser()
     {
-
+        Debug.Log("Laser would fire here");
     }
+
 }

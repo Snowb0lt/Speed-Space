@@ -35,8 +35,8 @@ public class Boss : MonoBehaviour, IDamageable
     }
 
     public float attackRate;
-    private float attackCooldown = 0;
-    public virtual void PickAttack(Action Attack)
+    public float attackCooldown = 0;
+    public virtual void Attack(Action Attack)
     {
         if (target.gameObject.activeSelf == true)
         {
