@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour, IDamageable
 {
     public GameObject target;
     public GameObject Spawnarea;
+    public List<Action> bossAttacks;
     private void Awake()
     {
         target = GameObject.FindWithTag("Player");
@@ -16,6 +17,7 @@ public class Boss : MonoBehaviour, IDamageable
     [SerializeField] private GameObject BossStartMove;
     public virtual void Start()
     {
+        bossAttacks = new List<Action>();
         travelPoint = BossStartMove.transform.position;
     }
     public int BossMoveSpeed;

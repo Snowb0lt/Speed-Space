@@ -12,22 +12,18 @@ public class GunShipBoss : Boss
         travelPoint = new Vector2(UnityEngine.Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
     }
 
-    private List<Action> attacks;
-
     public override void Start()
     {
         base.Start();
-        attacks = new List<Action>();
-
-        attacks.Add(AttackShoot);
-        attacks.Add(AttackLaser);
+        bossAttacks.Add(AttackShoot);
+        bossAttacks.Add(AttackLaser);
     }
 
     public override void Update()
     {
         base.Update();
         TurretMovement();
-        Attack(attacks[UnityEngine.Random.Range(0, attacks.Count)]);
+        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
     [Header("Weapons")]
@@ -56,7 +52,7 @@ public class GunShipBoss : Boss
     {
         for (int i = 0; i < 5; i++)
         {
-            Instantiate(bulletPrefab, new Vector3(turret.transform.position.x, turret.transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+            Instantiate(bulletPrefab, new Vector3(turret.transform.position.x, turret.transform.position.y, transform.position.z), Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
         }
     }
