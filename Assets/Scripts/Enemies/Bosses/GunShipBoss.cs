@@ -14,15 +14,13 @@ public class GunShipBoss : Boss
     public override void Update()
     {
         base.Update();
-        Vector3 Look = transform.InverseTransformPoint(target.transform.position);
-        float Angle = Mathf.Atan2(Look.y, Look.x) * Mathf.Rad2Deg;
+        
+
         foreach (GameObject turret in Turrets)
         {
-            turret.transform.rotation = Quaternion.Euler(0,0,Angle + 90);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            AttackShoot();
+            Vector3 targetPos = target.transform.position - turret.transform.position;
+            float Facing = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg + 90;
+            turret.transform.rotation = Quaternion.Euler(0,0,Facing);
         }
     }
 
