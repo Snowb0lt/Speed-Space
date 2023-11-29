@@ -17,13 +17,21 @@ public class GunShipBoss : Boss
         base.Start();
         bossAttacks.Add(AttackShoot);
         bossAttacks.Add(AttackLaser);
+        foreach (var laser in LaserPorts)
+        {
+            laser.SetActive(false);
+        }
     }
 
     public override void Update()
     {
         base.Update();
         TurretMovement();
-        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
+        if (Input.GetKeyDown(KeyCode.P)) 
+        {
+            AttackLaser();
+        }
+        //Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
     [Header("Weapons")]
@@ -58,10 +66,19 @@ public class GunShipBoss : Boss
     }
 
     [SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
+    private Color laserColor = Color.blue;
     //fire the twin lasers
     private void AttackLaser()
     {
-        Debug.Log("Laser would fire here");
+        foreach (GameObject laser in LaserPorts)
+        {
+            laser.SetActive(true);
+            Invoke("FireLaser", 2);
+        }
     }
 
+    private void FireLaser()
+    {
+        Debug.Log("Laser would fire here");
+    }
 }
