@@ -18,7 +18,7 @@ public class GunShipBoss : Boss
     {
         base.Start();
         bossAttacks.Add(AttackShoot);
-        bossAttacks.Add(AttackLaser);
+        //bossAttacks.Add(AttackLaser);
         //foreach (var laser in LaserPorts)
         //{
         //    laser.SetActive(false);
@@ -33,10 +33,10 @@ public class GunShipBoss : Boss
     {
         base.Update();
         TurretMovement();
-        if (Input.GetKeyDown(KeyCode.P)) 
-        {
-            AttackLaser();
-        }
+        //if (Input.GetKeyDown(KeyCode.P)) 
+        //{
+        //    AttackLaser();
+        //}
         //Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
@@ -74,29 +74,29 @@ public class GunShipBoss : Boss
         }
     }
 
-    [SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
-    private Color laserColor;
-    private Animator LaserAnimation;
-    [SerializeField] private GameObject gunshipLaser;
-    [SerializeField] private AnimatorController laserController;
-    //fire the twin lasers
-    private void AttackLaser()
-    {
-        foreach (GameObject laser in LaserPorts)
-        {
-            Instantiate(gunshipLaser, laser.transform.position, Quaternion.identity);
-            Invoke("FireLaser", 2);
-        }
-    }
+    //[SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
+    //private Color laserColor;
+    //private Animator LaserAnimation;
+    //[SerializeField] private GameObject gunshipLaser;
+    //[SerializeField] private AnimatorController laserController;
+    ////fire the twin lasers
+    //private void AttackLaser()
+    //{
+    //    foreach (GameObject laser in LaserPorts)
+    //    {
+    //        Instantiate(gunshipLaser, laser.transform.position, Quaternion.identity);
+    //        Invoke("FireLaser", 2);
+    //    }
+    //}
 
-    private void FireLaser()
-    {
-        Debug.Log("Laser would fire here");
-        foreach (GameObject laser in LaserPorts)
-        {
-            gunshipLaser.GetComponent<Animator>().Play("GunshipLaserAnime");
-        }
-    }
+    //private void FireLaser()
+    //{
+    //    Debug.Log("Laser would fire here");
+    //    foreach (GameObject laser in LaserPorts)
+    //    {
+    //        gunshipLaser.GetComponent<Animator>().Play("GunshipLaserAnime");
+    //    }
+    //}
 
     public override void TakeDamage(float damageAmount)
     {
