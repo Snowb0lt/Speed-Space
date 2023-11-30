@@ -11,14 +11,16 @@ public class Boss : MonoBehaviour, IDamageable
     private void Awake()
     {
         target = GameObject.FindWithTag("Player");
-        health = GetComponent<Health>();
+        mainHealth = GetComponent<Health>();
     }
     [Header("Movement")]
     [SerializeField] private GameObject BossStartMove;
+    private Color BossColor;
     public virtual void Start()
     {
         bossAttacks = new List<Action>();
         travelPoint = BossStartMove.transform.position;
+        BossColor = this.gameObject.GetComponent<SpriteRenderer>().color;
     }
     public int BossMoveSpeed;
     public virtual void Update()
@@ -29,11 +31,13 @@ public class Boss : MonoBehaviour, IDamageable
 
     //Damage To Boss
     [Header("Health")]
-    public Health health;
-    public void TakeDamage(float damageAmount)
+    public Health mainHealth;
+    public virtual void TakeDamage(float damageAmount)
     {
-        health.hitpoints = health.hitpoints - damageAmount;
-        health.HealthCheck();
+        mainHealth.hitpoints = mainHealth.hitpoints - damageAmount;
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        this.gameObject.GetComponent<SpriteRenderer>().color = BossColor;
+        mainHealth.HealthCheck();
     }
 
     public float attackRate;
@@ -53,5 +57,10 @@ public class Boss : MonoBehaviour, IDamageable
         {
             attackCooldown = 0;
         }
+    }
+
+    public void Death()
+    {
+        throw new NotImplementedException();
     }
 }

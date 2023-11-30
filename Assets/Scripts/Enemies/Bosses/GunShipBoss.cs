@@ -12,6 +12,7 @@ public class GunShipBoss : Boss
         travelPoint = new Vector2(UnityEngine.Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
     }
 
+    private Health turretHealth;
     public override void Start()
     {
         base.Start();
@@ -20,6 +21,10 @@ public class GunShipBoss : Boss
         foreach (var laser in LaserPorts)
         {
             laser.SetActive(false);
+        }
+        foreach(var turret in Turrets)
+        {
+            turretHealth = turret.GetComponent<Health>();
         }
     }
 
@@ -31,21 +36,24 @@ public class GunShipBoss : Boss
         {
             AttackLaser();
         }
-        //Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
+        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
     [Header("Weapons")]
-    [SerializeField]private List<GameObject> Turrets = new List<GameObject>();
+    public List<GameObject> Turrets = new List<GameObject>();
 
     [SerializeField] private GameObject bulletPrefab;
     //Concerning the gunship's cannons
     private void TurretMovement()
-    {
+    {  
         foreach (GameObject turret in Turrets)
         {
-            Vector3 targetPos = target.transform.position - turret.transform.position;
-            float Facing = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg + 90;
-            turret.transform.rotation = Quaternion.Euler(0, 0, Facing);
+            if (turret != null)
+            {
+                Vector3 targetPos = target.transform.position - turret.transform.position;
+                float Facing = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg + 90;
+                turret.transform.rotation = Quaternion.Euler(0, 0, Facing);
+            }
         }
     }
     private void AttackShoot()
@@ -66,13 +74,14 @@ public class GunShipBoss : Boss
     }
 
     [SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
-    private Color laserColor = Color.blue;
+    private Color laserColor;
+    private Animator LaserAnimation;
     //fire the twin lasers
     private void AttackLaser()
     {
         foreach (GameObject laser in LaserPorts)
         {
-            laser.SetActive(true);
+            Instantiate(laser, this.transform.position, Quaternion.identity);
             Invoke("FireLaser", 2);
         }
     }
@@ -80,5 +89,18 @@ public class GunShipBoss : Boss
     private void FireLaser()
     {
         Debug.Log("Laser would fire here");
+        LaserAnimation.SetTrigger("PlayTrigger");
+    }
+
+    public override void TakeDamage(float damageAmount)
+    {
+        if (Turrets.Count != 0)
+        {
+            Debug.Log("Destroy the Turrets First");
+        }
+        else
+        {
+            base.TakeDamage(damageAmount);
+        }
     }
 }

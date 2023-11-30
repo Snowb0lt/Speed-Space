@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -161,5 +162,11 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             attackCooldown = 0;
         }
+    }
+
+    public void Death()
+    {
+        GameManager._instance.AddScore(enemyScore);
+        Destroy(this.gameObject);
     }
 }

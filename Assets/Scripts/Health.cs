@@ -11,18 +11,8 @@ public class Health : MonoBehaviour
     {
         if (hitpoints <= 0)
         {
+            this.GetComponent<IDamageable>().Death();
             Debug.Log(gameObject.name + "has Died");
-            if (this.gameObject.GetComponent<Enemy>() != null )
-            {
-                enemy = this.gameObject.GetComponent<Enemy>();
-                GameManager._instance.AddScore(enemy.enemyScore);
-                Destroy(this.gameObject);
-            }
-            if (this.gameObject.GetComponent<Player>() != null )
-            {
-                GameManager._instance.LoseALife();
-                this.gameObject.SetActive(false);
-            }
         }
         else return;
     }

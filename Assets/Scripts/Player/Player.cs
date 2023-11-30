@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         health = this.gameObject.GetComponent<Health>();
     }
+    //setup for damage
 
     private void Start()
     {
@@ -93,5 +94,11 @@ public class Player : MonoBehaviour, IDamageable
         {
             GameManager._instance.UseBomb();
         }
+    }
+
+    public void Death()
+    {
+        GameManager._instance.LoseALife();
+        this.gameObject.SetActive(false);
     }
 }

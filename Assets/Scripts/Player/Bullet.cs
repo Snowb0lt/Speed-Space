@@ -35,9 +35,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag != "Player")
         {
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
@@ -46,6 +46,5 @@ public class Bullet : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        
     }
 }

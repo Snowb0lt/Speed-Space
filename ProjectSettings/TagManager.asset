@@ -8,6 +8,8 @@ TagManager:
   - Explosion
   - ShielderSpawn
   - PlayerSpawn
+  - BossDamageable
+  - BossMain
   layers:
   - Default
   - TransparentFX
