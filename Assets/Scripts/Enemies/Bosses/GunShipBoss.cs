@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -18,10 +19,10 @@ public class GunShipBoss : Boss
         base.Start();
         bossAttacks.Add(AttackShoot);
         bossAttacks.Add(AttackLaser);
-        foreach (var laser in LaserPorts)
-        {
-            laser.SetActive(false);
-        }
+        //foreach (var laser in LaserPorts)
+        //{
+        //    laser.SetActive(false);
+        //}
         foreach(var turret in Turrets)
         {
             turretHealth = turret.GetComponent<Health>();
@@ -36,7 +37,7 @@ public class GunShipBoss : Boss
         {
             AttackLaser();
         }
-        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
+        //Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
     [Header("Weapons")]
@@ -76,12 +77,14 @@ public class GunShipBoss : Boss
     [SerializeField] private List<GameObject> LaserPorts = new List<GameObject>();
     private Color laserColor;
     private Animator LaserAnimation;
+    [SerializeField] private GameObject gunshipLaser;
+    [SerializeField] private AnimatorController laserController;
     //fire the twin lasers
     private void AttackLaser()
     {
         foreach (GameObject laser in LaserPorts)
         {
-            Instantiate(laser, this.transform.position, Quaternion.identity);
+            Instantiate(gunshipLaser, laser.transform.position, Quaternion.identity);
             Invoke("FireLaser", 2);
         }
     }
@@ -89,7 +92,10 @@ public class GunShipBoss : Boss
     private void FireLaser()
     {
         Debug.Log("Laser would fire here");
-        LaserAnimation.SetTrigger("PlayTrigger");
+        foreach (GameObject laser in LaserPorts)
+        {
+            gunshipLaser.GetComponent<Animator>().Play("GunshipLaserAnime");
+        }
     }
 
     public override void TakeDamage(float damageAmount)
