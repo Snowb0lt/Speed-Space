@@ -13,13 +13,13 @@ public class Boss : MonoBehaviour, IDamageable
     {
         target = GameObject.FindWithTag("Player");
         mainHealth = GetComponent<Health>();
+        bossAttacks = new List<Action>();
     }
     [Header("Movement")]
     [SerializeField] private GameObject BossStartMove;
     private Color BossColor;
     public virtual void Start()
     {
-        bossAttacks = new List<Action>();
         travelPoint = BossStartMove.transform.position;
         BossColor = this.gameObject.GetComponent<SpriteRenderer>().color;
     }
@@ -65,5 +65,10 @@ public class Boss : MonoBehaviour, IDamageable
         GameManager._instance.AddScore(bossScoreValue);
         GameManager._instance.BossReset();
         Destroy(this.gameObject);
+    }
+
+    public void MoveToPosition()
+    {
+
     }
 }

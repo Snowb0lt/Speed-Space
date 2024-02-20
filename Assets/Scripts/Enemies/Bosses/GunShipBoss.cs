@@ -7,11 +7,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class GunShipBoss : Boss
 {
-    private void BossMovement()
-    {
-        var Spawnbounds = Spawnarea.GetComponent<SpriteRenderer>().bounds;
-        travelPoint = new Vector2(UnityEngine.Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
-    }
+    //private void BossMovement()
+    //{
+    //    var Spawnbounds = Spawnarea.GetComponent<SpriteRenderer>().bounds;
+    //    travelPoint = new Vector2(UnityEngine.Random.Range(Spawnbounds.min.x, Spawnbounds.max.x), Spawnarea.transform.position.y);
+    //}
 
     private Health turretHealth;
     private void Awake()
