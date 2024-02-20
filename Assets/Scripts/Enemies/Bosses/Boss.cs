@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour, IDamageable
 {
     public GameObject target;
     public GameObject Spawnarea;
+
     public List<Action> bossAttacks;
     private void Awake()
     {
@@ -61,6 +62,7 @@ public class Boss : MonoBehaviour, IDamageable
 
     public void Death()
     {
-        throw new NotImplementedException();
+        GameManager._instance.BossReset();
+        Destroy(this.gameObject);
     }
 }

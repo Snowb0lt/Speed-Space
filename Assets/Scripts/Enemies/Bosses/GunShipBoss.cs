@@ -37,7 +37,7 @@ public class GunShipBoss : Boss
         //{
         //    AttackLaser();
         //}
-        //Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
+        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
     }
 
     [Header("Weapons")]
