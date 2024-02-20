@@ -6,10 +6,11 @@ using UnityEngine.Rendering.PostProcessing;
 public class Bomb : MonoBehaviour
 {
     [SerializeField] private List<Animator> animations = new List<Animator>();
-    [SerializeField] private GameObject Nuke;
+    [SerializeField] private GameObject Nuke, nukeStart;
     [SerializeField] private float DetTime;
     public void ActivateBomb()
     {
+        nukeStart.SetActive(true);
         foreach (var anim in animations)
         {
             anim.SetTrigger("PlayTrigger");
@@ -19,6 +20,7 @@ public class Bomb : MonoBehaviour
 
     private void DetonateNuke()
     {
+        nukeStart.SetActive(false);
         Instantiate(Nuke, transform.position, Quaternion.identity);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject hostiles in enemies)

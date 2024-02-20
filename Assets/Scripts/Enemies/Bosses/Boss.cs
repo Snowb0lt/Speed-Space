@@ -59,9 +59,10 @@ public class Boss : MonoBehaviour, IDamageable
             attackCooldown = 0;
         }
     }
-
+    [SerializeField]private int bossScoreValue;
     public void Death()
     {
+        GameManager._instance.AddScore(bossScoreValue);
         GameManager._instance.BossReset();
         Destroy(this.gameObject);
     }

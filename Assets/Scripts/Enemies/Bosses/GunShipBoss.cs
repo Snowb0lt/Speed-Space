@@ -14,10 +14,14 @@ public class GunShipBoss : Boss
     }
 
     private Health turretHealth;
+    private void Awake()
+    {
+        bossAttacks.Add(AttackShoot);
+    }
     public override void Start()
     {
         base.Start();
-        bossAttacks.Add(AttackShoot);
+        
         //bossAttacks.Add(AttackLaser);
         //foreach (var laser in LaserPorts)
         //{

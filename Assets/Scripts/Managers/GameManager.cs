@@ -81,20 +81,21 @@ public class GameManager : MonoBehaviour
     public void NextRound()
     {
         RoundsBeforeBoss--;
-        if (RoundsBeforeBoss == 0)
+        if (RoundsBeforeBoss <= 0)
         {
             SpawnBoss();
         }
     }
+
     [Header("Boss Spawning/Intro")]
     private AudioSource BossSpawnSound;
-    private List<GameObject> BossList = new List<GameObject>();
-    private int randomNumber;
-    private GameObject BossSpawnLocation;
+    [SerializeField]private List<GameObject> BossList = new List<GameObject>();
+    private int randomBoss;
+    [SerializeField]private GameObject BossSpawnLocation;
     public void SpawnBoss()
     {
-        randomNumber = Random.Range(0, BossList.Count);
-        Instantiate(BossList[randomNumber], BossSpawnLocation.transform);
+        randomBoss = Random.Range(0, BossList.Count);
+        Instantiate(BossList[randomBoss], BossSpawnLocation.transform);
     }
     public void BossReset()
     {

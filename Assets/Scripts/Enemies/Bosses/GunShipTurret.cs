@@ -13,6 +13,7 @@ public class GunShipTurret : MonoBehaviour, IDamageable
     }
     public void Death()
     {
+        GameManager._instance.AddScore(100);
         boss.Turrets.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
