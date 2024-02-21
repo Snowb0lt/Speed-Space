@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Mine" || collision.gameObject.tag == "BossMain" || collision.gameObject.tag == "BossDamageable")
         {
             //Debug.Log("Hit");
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();

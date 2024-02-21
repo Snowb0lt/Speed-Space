@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
     private void EnemySpawning()
     {
         //Check if enemies are on screen
-        enemyCheck = FindAnyObjectByType(typeof(Enemy));
         BossCheck = FindAnyObjectByType(typeof(Boss));
-        if (RoundsBeforeBoss !=0)
+        enemyCheck = FindAnyObjectByType(typeof(Enemy));
+        if (BossCheck == null)
         {
-            if (enemyCheck == null && BossCheck == null)
+            if (enemyCheck == null)
             {
                 //break between spawns
                 //BackgroundScroll.instance.scrollSpeed = 15;

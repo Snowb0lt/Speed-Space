@@ -38,13 +38,10 @@ public class Boss : MonoBehaviour, IDamageable
     public Health mainHealth;
     public virtual void TakeDamage(float damageAmount)
     {
-        if (bossInPosition)
-        {
-            mainHealth.hitpoints = mainHealth.hitpoints - damageAmount;
-            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            this.gameObject.GetComponent<SpriteRenderer>().color = BossColor;
-            mainHealth.HealthCheck();
-        }
+     mainHealth.hitpoints = mainHealth.hitpoints - damageAmount;
+     this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+     this.gameObject.GetComponent<SpriteRenderer>().color = BossColor;
+     mainHealth.HealthCheck();
     }
 
     public float attackRate;
