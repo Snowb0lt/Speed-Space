@@ -78,4 +78,6 @@ public class UIManager : MonoBehaviour
     {
         bombCountText.text = "= " + bombCount;
     }
+
+    //Display Game Over and Show High Scores
 }

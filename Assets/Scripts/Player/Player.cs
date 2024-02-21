@@ -98,7 +98,14 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Death()
     {
-        GameManager._instance.LoseALife();
         this.gameObject.SetActive(false);
+        if (GameManager._instance.NumberOfLives != 0)
+        {
+            GameManager._instance.LoseALife();
+        }
+        else
+        {
+            GameManager._instance.GameOver();
+        }
     }
 }

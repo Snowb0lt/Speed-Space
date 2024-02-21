@@ -141,4 +141,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Manage When The Game is over
+
+    public void GameOver()
+    {
+        Time.timeScale = 0.5f;
+    }
 }
