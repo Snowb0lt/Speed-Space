@@ -14,9 +14,11 @@ public class GunShipBoss : Boss
     //}
 
     private Health turretHealth;
-    private void Awake()
+    public override void Awake()
     {
-        bossAttacks.Add(AttackShoot);
+        base.Awake();
+        //bossAttacks.Add(AttackShoot);
+        travelPoint = GameObject.FindWithTag("GunshipNavPoint").transform.position;
     }
     public override void Start()
     {
@@ -41,7 +43,7 @@ public class GunShipBoss : Boss
         //{
         //    AttackLaser();
         //}
-        Attack(bossAttacks[UnityEngine.Random.Range(0, bossAttacks.Count)]);
+        Attack(AttackShoot);
     }
 
     [Header("Weapons")]
@@ -112,5 +114,11 @@ public class GunShipBoss : Boss
         {
             base.TakeDamage(damageAmount);
         }
+    }
+
+    public override void MoveToPosition()
+    {
+        base.MoveToPosition();
+        
     }
 }

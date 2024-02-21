@@ -2,43 +2,49 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Boss : MonoBehaviour, IDamageable
 {
     public GameObject target;
     public GameObject Spawnarea;
 
-    public List<Action> bossAttacks;
-    private void Awake()
+    public List<System.Action> bossAttacks;
+    public virtual void Awake()
     {
         target = GameObject.FindWithTag("Player");
         mainHealth = GetComponent<Health>();
-        bossAttacks = new List<Action>();
+        bossAttacks = new List<System.Action>();
     }
     [Header("Movement")]
     [SerializeField] private GameObject BossStartMove;
     private Color BossColor;
     public virtual void Start()
-    {
-        travelPoint = BossStartMove.transform.position;
+    { 
         BossColor = this.gameObject.GetComponent<SpriteRenderer>().color;
     }
     public int BossMoveSpeed;
     public virtual void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, travelPoint, BossMoveSpeed * Time.deltaTime);
+        if (!bossInPosition)
+        {
+            MoveToPosition();
+        }
     }
-    public Vector2 travelPoint;
+    public Vector3 travelPoint;
 
     //Damage To Boss
     [Header("Health")]
     public Health mainHealth;
     public virtual void TakeDamage(float damageAmount)
     {
-        mainHealth.hitpoints = mainHealth.hitpoints - damageAmount;
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        this.gameObject.GetComponent<SpriteRenderer>().color = BossColor;
-        mainHealth.HealthCheck();
+        if (bossInPosition)
+        {
+            mainHealth.hitpoints = mainHealth.hitpoints - damageAmount;
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            this.gameObject.GetComponent<SpriteRenderer>().color = BossColor;
+            mainHealth.HealthCheck();
+        }
     }
 
     public float attackRate;
@@ -67,8 +73,13 @@ public class Boss : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    public void MoveToPosition()
+    public bool bossInPosition = false;
+    public virtual void MoveToPosition()
     {
+        if (!bossInPosition && (this.gameObject.transform.position == travelPoint))
+        {
 
+        }
+        transform.position = Vector2.MoveTowards(transform.position, travelPoint, BossMoveSpeed * Time.deltaTime);
     }
 }

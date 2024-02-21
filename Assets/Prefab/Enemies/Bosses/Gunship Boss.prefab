@@ -564,11 +564,12 @@ MonoBehaviour:
   Spawnarea: {fileID: 0}
   BossStartMove: {fileID: 0}
   BossMoveSpeed: 2
-  travelPoint: {x: 0, y: 0}
+  travelPoint: {x: 0, y: 0, z: 0}
   mainHealth: {fileID: 0}
   attackRate: 5
   attackCooldown: 0
   bossScoreValue: 1000
+  bossInPosition: 0
   Turrets:
   - {fileID: 8641274714942847632}
   - {fileID: 2340736009444653275}

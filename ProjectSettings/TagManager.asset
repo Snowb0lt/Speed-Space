@@ -10,6 +10,7 @@ TagManager:
   - PlayerSpawn
   - BossDamageable
   - BossMain
+  - GunshipNavPoint
   layers:
   - Default
   - TransparentFX

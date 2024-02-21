@@ -48,25 +48,28 @@ public class GameManager : MonoBehaviour
         //Check if enemies are on screen
         enemyCheck = FindAnyObjectByType(typeof(Enemy));
         BossCheck = FindAnyObjectByType(typeof(Boss));
-        if (enemyCheck == null && BossCheck == null)
+        if (RoundsBeforeBoss !=0)
         {
-            //break between spawns
-            //BackgroundScroll.instance.scrollSpeed = 15;
-            enemiesToSpawn = Random.Range(baseSpawningNum, baseSpawningNum + 3);
-            DelayTimer += Time.deltaTime;
-            if (DelayTimer >= SpawnMoment)
+            if (enemyCheck == null && BossCheck == null)
             {
-                NextRound();    
-                //BackgroundScroll.instance.scrollSpeed = 10;
-
-                //"Ambush" Spawn
-                for (int i = 0; i < enemiesToSpawn; i++)
+                //break between spawns
+                //BackgroundScroll.instance.scrollSpeed = 15;
+                enemiesToSpawn = Random.Range(baseSpawningNum, baseSpawningNum + 3);
+                DelayTimer += Time.deltaTime;
+                if (DelayTimer >= SpawnMoment)
                 {
-                    enemyToSpawn = Random.Range(0, EnemyList.Count);
-                    Instantiate(EnemyList[enemyToSpawn], spawnAreas[Random.Range(0, spawnAreas.Count)].transform.position, Quaternion.identity);
+                    NextRound();
+                    //BackgroundScroll.instance.scrollSpeed = 10;
+
+                    //"Ambush" Spawn
+                    for (int i = 0; i < enemiesToSpawn; i++)
+                    {
+                        enemyToSpawn = Random.Range(0, EnemyList.Count);
+                        Instantiate(EnemyList[enemyToSpawn], spawnAreas[Random.Range(0, spawnAreas.Count)].transform.position, Quaternion.identity);
+                    }
+                    DelayTimer = 0;
                 }
-                DelayTimer = 0;
-            } 
+            }
         }
     }
     private int PlayerScore;
