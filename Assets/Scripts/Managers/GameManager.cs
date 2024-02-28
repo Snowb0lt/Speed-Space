@@ -24,7 +24,10 @@ public class GameManager : MonoBehaviour
     private int enemyToSpawn;
     void LateUpdate()
     {
-        EnemySpawning();
+        if (RoundsBeforeBoss != 0)
+        {
+            EnemySpawning();
+        }
 
         //VERY ROUGH ESCAPE KEY EXIT. REPLACE LATER
         if (Input.GetKeyDown(KeyCode.Escape))

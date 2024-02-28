@@ -68,16 +68,17 @@ public class Boss : MonoBehaviour, IDamageable
         GameManager._instance.AddScore(bossScoreValue);
         GameManager._instance.BossReset();
         GameManager._instance.NumberOfBombs++;
+        UIManager._instance.UpdateBombCount(GameManager._instance.NumberOfBombs);
         Destroy(this.gameObject);
     }
 
     public bool bossInPosition = false;
     public virtual void MoveToPosition()
     {
-        if (!bossInPosition && (this.gameObject.transform.position == travelPoint))
-        {
+        //if (!bossInPosition && (this.gameObject.transform.position == travelPoint))
+        //{
 
-        }
+        //}
         transform.position = Vector2.MoveTowards(transform.position, travelPoint, BossMoveSpeed * Time.deltaTime);
     }
 }
