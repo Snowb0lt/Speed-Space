@@ -8484,7 +8484,7 @@ MonoBehaviour:
   - {fileID: 1753993191}
   - {fileID: 1234365926}
   - {fileID: 1585006953}
-  RoundsBeforeBoss: 1
+  RoundsBeforeBoss: 0
   BossList:
   - {fileID: 2815605193518144957, guid: e739b1a8ce381ab48ae90f4dfb2c3685, type: 3}
   BossSpawnLocation: {fileID: 779786161}

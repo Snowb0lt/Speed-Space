@@ -53,21 +53,24 @@ public class Player : MonoBehaviour, IDamageable
     //Controls how the player moves
     private void PlayerMovement()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (playerShip != null)
         {
-            playerShip.transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            playerShip.transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            playerShip.transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            playerShip.transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                playerShip.transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                playerShip.transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                playerShip.transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                playerShip.transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+            }
         }
     }
 
