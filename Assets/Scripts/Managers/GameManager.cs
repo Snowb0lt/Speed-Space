@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour
         }
 
         //VERY ROUGH ESCAPE KEY EXIT. REPLACE LATER
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Time.timeScale = 0;
+        //}
     }
 
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    private int PlayerScore;
+    public int PlayerScore;
     public void AddScore(int scoreamount)
     {
         PlayerScore = PlayerScore + scoreamount;
@@ -143,11 +143,19 @@ public class GameManager : MonoBehaviour
             AddScore(200);
         }
     }
-
+    [Header("Game Over Mechanics")]
     //Manage When The Game is over
 
+    [SerializeField] private GameObject Gameoverscreen;
+    [SerializeField] private GameObject Highscorescreen;
     public void GameOver()
     {
         Time.timeScale = 0.5f;
+        Invoke("ShowHideGameOver", 1);
+    }
+
+    public void ShowHideGameOver()
+    {
+        Gameoverscreen.SetActive(!Gameoverscreen.activeSelf);
     }
 }
