@@ -50,7 +50,12 @@ public class HighScoreManager : MonoBehaviour
     public void DisplayHighScores()
     {
         var sorted = ScoreEntries.OrderByDescending(key => key.Value);
-        foreach (var entry in sorted.Take(10))
+
+        foreach(Transform child in HighScoreHolder)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (var entry in sorted.Take(5))
         {
             Instantiate(EntryPrefab, HighScoreHolder);
             EntryName = EntryPrefab.transform.GetChild(0).GetComponent<TMP_Text>();
