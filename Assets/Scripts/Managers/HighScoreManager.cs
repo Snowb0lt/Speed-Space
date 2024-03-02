@@ -38,7 +38,6 @@ public class HighScoreManager : MonoBehaviour
     [SerializeField] private GameObject HighScoreObject;
     public void DisplayHighScores()
     {
-        HighScoreObject.SetActive(true);
         foreach (var entry in ScoreEntries.OrderBy(key => key.Value).Take(10))
         {
             Instantiate(EntryPrefab, HighScoreHolder);
@@ -47,5 +46,6 @@ public class HighScoreManager : MonoBehaviour
             EntryName.text = entry.Key;
             EntryScore.text = entry.Value.ToString();
         }
+        HighScoreObject.SetActive(true);
     }
 }
