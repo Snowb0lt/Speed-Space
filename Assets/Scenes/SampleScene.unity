@@ -9889,7 +9889,7 @@ MonoBehaviour:
   BossList:
   - {fileID: 2815605193518144957, guid: e739b1a8ce381ab48ae90f4dfb2c3685, type: 3}
   BossSpawnLocation: {fileID: 779786161}
-  NumberOfLives: 0
+  NumberOfLives: 3
   player: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
   NumberOfBombs: 3
@@ -9897,6 +9897,7 @@ MonoBehaviour:
   bomb: {fileID: 75452585}
   Gameoverscreen: {fileID: 1988330162}
   Highscorescreen: {fileID: 1175842315}
+  BombScoreUI: {fileID: 1888825727}
 --- !u!4 &1832639813
 Transform:
   m_ObjectHideFlags: 0

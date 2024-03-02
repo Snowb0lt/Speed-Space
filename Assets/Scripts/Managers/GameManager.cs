@@ -151,6 +151,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject Gameoverscreen;
     [SerializeField] private GameObject Highscorescreen;
+    [SerializeField] private GameObject BombScoreUI;
     public void GameOver()
     {
         Time.timeScale = 0.5f;
@@ -159,6 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowHideGameOver()
     {
+        BombScoreUI.SetActive(false);
         Gameoverscreen.SetActive(!Gameoverscreen.activeSelf);
     }
 
