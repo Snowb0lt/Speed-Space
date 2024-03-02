@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class HighScoreManager : MonoBehaviour
     [SerializeField] private GameObject EntryPrefab;
     [SerializeField] private Transform HighScoreHolder;
 
-    [SerializeField] private Dictionary<string, int> ScoreEntries = new Dictionary<string,int>();
+    public SortedDictionary<string, int> ScoreEntries = new SortedDictionary<string,int>();
 
     public static HighScoreManager _instance;
     private void Awake()
@@ -47,5 +48,6 @@ public class HighScoreManager : MonoBehaviour
             EntryScore.text = entry.Value.ToString();
         }
         HighScoreObject.SetActive(true);
+        SavingManager._instance.SaveScores(ScoreEntries);
     }
 }

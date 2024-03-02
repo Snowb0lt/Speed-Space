@@ -1,12 +1,14 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Rendering;
 
 public class SavingManager : MonoBehaviour
 {
-    private HighScores scoresToSave;
+    public HighScores scoreToSave;
     private IDataMangement dataMangement;
 
     public static SavingManager _instance;
@@ -17,19 +19,21 @@ public class SavingManager : MonoBehaviour
             _instance = this;
         }
     }
-    private void SaveScores()
+    public void SaveScores(SortedDictionary<string,int> highScores)
     {
-        
+        string ScoresToSave = JsonConvert.SerializeObject(highScores, Formatting.Indented);
+        File.WriteAllText(Application.persistentDataPath + "/HighScores.json", ScoresToSave);
     }
 
-    private void LoadScores()
+    public void LoadScores()
     {
-
+        var loadedScores = File.ReadAllText(Application.persistentDataPath + "/HighScores.json");
+        HighScoreManager._instance.ScoreEntries = JsonConvert.DeserializeObject<SortedDictionary<string, int>>(loadedScores);
     }
 }
 
 [Serializable]
 public class HighScores
 {
-    Dictionary<string, int> highScoresToSave;
+    public SortedDictionary<string, int> highScoresToSave;
 }
