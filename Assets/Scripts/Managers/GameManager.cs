@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         BossReset();
         playerSpawnPoint = GameObject.FindWithTag("PlayerSpawn");
+        HighScoreManager._instance.ScoreEntries.Clear();
         SavingManager._instance.LoadScores();
     }
     private int enemyToSpawn;

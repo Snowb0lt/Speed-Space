@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using static UnityEngine.EventSystems.EventTrigger;
+using System;
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class HighScoreManager : MonoBehaviour
     [SerializeField] private GameObject EntryPrefab;
     [SerializeField] private Transform HighScoreHolder;
 
-    public SortedDictionary<string, int> ScoreEntries = new SortedDictionary<string,int>();
+    public Dictionary<string, int> ScoreEntries = new Dictionary<string,int>();
 
     public static HighScoreManager _instance;
     private void Awake()
@@ -27,19 +28,29 @@ public class HighScoreManager : MonoBehaviour
     {
         if (nameInputField.text == "")
         {
-            ScoreEntries.Add("Lord Galactic X", GameManager._instance.PlayerScore);
+            string DefaultName = "Lord Galactic X";
+            if (ScoreEntries.ContainsKey(DefaultName))
+            {
+                ScoreEntries.Remove(DefaultName);
+            }
+            ScoreEntries.Add(DefaultName, GameManager._instance.PlayerScore);
         }
         else
         {
+            if (ScoreEntries.ContainsKey(nameInputField.text))
+            {
+                ScoreEntries.Remove(nameInputField.text);
+            }
             ScoreEntries.Add(nameInputField.text, GameManager._instance.PlayerScore);
         }
         DisplayHighScores();
     }
-
     [SerializeField] private GameObject HighScoreObject;
+    [SerializeField] private List<int> scores;
     public void DisplayHighScores()
     {
-        foreach (var entry in ScoreEntries.OrderBy(key => key.Value).Take(10))
+        var sorted = ScoreEntries.OrderByDescending(key => key.Value);
+        foreach (var entry in sorted.Take(10))
         {
             Instantiate(EntryPrefab, HighScoreHolder);
             EntryName = EntryPrefab.transform.GetChild(0).GetComponent<TMP_Text>();

@@ -19,7 +19,7 @@ public class SavingManager : MonoBehaviour
             _instance = this;
         }
     }
-    public void SaveScores(SortedDictionary<string,int> highScores)
+    public void SaveScores(Dictionary<string,int> highScores)
     {
         string ScoresToSave = JsonConvert.SerializeObject(highScores, Formatting.Indented);
         File.WriteAllText(Application.persistentDataPath + "/HighScores.json", ScoresToSave);
@@ -28,12 +28,12 @@ public class SavingManager : MonoBehaviour
     public void LoadScores()
     {
         var loadedScores = File.ReadAllText(Application.persistentDataPath + "/HighScores.json");
-        HighScoreManager._instance.ScoreEntries = JsonConvert.DeserializeObject<SortedDictionary<string, int>>(loadedScores);
+        HighScoreManager._instance.ScoreEntries = JsonConvert.DeserializeObject<Dictionary<string, int>>(loadedScores);
     }
 }
 
 [Serializable]
 public class HighScores
 {
-    public SortedDictionary<string, int> highScoresToSave;
+    public Dictionary<string, int> highScoresToSave;
 }
