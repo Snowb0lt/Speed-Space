@@ -55,7 +55,7 @@ public class HighScoreManager : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-        foreach (var entry in sorted.Take(5))
+        foreach (var entry in sorted.Take(6))
         {
             Instantiate(EntryPrefab, HighScoreHolder);
             EntryName = EntryPrefab.transform.GetChild(0).GetComponent<TMP_Text>();
